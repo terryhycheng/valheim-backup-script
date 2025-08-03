@@ -25,19 +25,13 @@ jobs:
           go-version: 1.22
 
       - name: Build
-        run: go build -o ${{ env.RELEASE_NAME }} main.go
-
-      - name: Create source archive
-        run: git archive --format=tar.gz -o source-code.tar.gz HEAD
-
+        run: go build -o valheim-backup-script-${{ env.VERSION }} main.go
       - name: Create release
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            ${{ env.RELEASE_NAME }}
-            source-code.tar.gz
+            valheim-backup-script-${{ env.VERSION }}
           tag: ${{ env.VERSION }}
           title: ${{ env.VERSION }}
           generate_release_notes: true
-          prerelease: false
-          draft: false
+          draft: true
