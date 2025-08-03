@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - "v*"
+      - "v*.*.*"
 
 env:
   VERSION: ${{ github.ref_name }}
@@ -24,12 +24,18 @@ jobs:
       - name: Build
         run: go build -o ${{ env.RELEASE_NAME }} main.go
 
+      - name: Create source archive
+        run: |
+          tar -czf source-code.tar.gz --exclude='.git' --exclude='*.tar.gz' --exclude='*.zip' .
+
       - name: Create release
         uses: softprops/action-gh-release@v2
         with:
           files: |
             ${{ env.RELEASE_NAME }}
+            source-code.tar.gz
           tag: ${{ env.VERSION }}
           title: ${{ env.VERSION }}
-          body: "Release ${{ env.VERSION }}"
-          draft: true
+          generate_release_notes: true
+          prerelease: false
+          draft: false
