@@ -25,8 +25,7 @@ jobs:
         run: go build -o ${{ env.RELEASE_NAME }} main.go
 
       - name: Create source archive
-        run: |
-          tar -czf source-code.tar.gz --exclude='.git' --exclude='*.tar.gz' --exclude='*.zip' .
+        run: git archive --format=tar.gz -o source-code.tar.gz HEAD
 
       - name: Create release
         uses: softprops/action-gh-release@v2
