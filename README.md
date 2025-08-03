@@ -1,12 +1,24 @@
 # Valheim Backup Script
 
+<div>
+<img src="https://oyster.ignimgs.com/mediawiki/apis.ign.com/valheim/e/e9/Valheim_logo.png" alt="Valheim Logo" width="300" />
+</div>
+<a href="https://github.com/terryhycheng/valheim-backup-script/actions/workflows/release.yml">
+  <img src="https://github.com/terryhycheng/valheim-backup-script/actions/workflows/release.yml/badge.svg" alt="Release">
+</a>
+<a href="https://github.com/terryhycheng/valheim-backup-script/releases/latest">
+  <img src="https://img.shields.io/github/v/release/terryhycheng/valheim-backup-script?logo=github" alt="GitHub Latest Release">
+</a>
+
+---
+
 I am hosting a dedicated server for Valheim on a VPS (Linux based), and I need a backup script that is reliable and easy to amend. Golang is the language of choice for this project as it's easy to build and deploy.
 
 ## What does this script do?
 
 - Deletes old backups (more than 90 days)
 - Create a `.tar.gz` file of the backup
-- Upload the backup to a bucket on AWS S3 (currently `valheim-backup` on DigitalOcean Spaces)
+- Upload the backup to a bucket on AWS S3 (currently `valheim-backup` on [DigitalOcean](https://www.digitalocean.com/products/spaces/) Spaces)
 
 ## How to use this script?
 
