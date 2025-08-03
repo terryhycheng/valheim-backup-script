@@ -10,6 +10,9 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   RELEASE_NAME: "valheim-backup-script"
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
