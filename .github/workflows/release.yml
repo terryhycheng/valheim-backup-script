@@ -2,8 +2,8 @@ name: Release
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - "v*"
 
 env:
   VERSION: ${{ github.ref_name }}
@@ -26,7 +26,6 @@ jobs:
 
       - name: Create release
         uses: softprops/action-gh-release@v2
-        if: github.ref_type == 'tag'
         with:
           files: |
             ${{ env.RELEASE_NAME }}
