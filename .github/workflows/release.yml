@@ -1,0 +1,36 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  VERSION: ${{ github.ref_name }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  RELEASE_NAME: "valheim-backup-script"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.22
+
+      - name: Build
+        run: go build -o ${{ env.RELEASE_NAME }} main.go
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        if: github.ref_type == 'tag'
+        with:
+          files: |
+            ${{ env.RELEASE_NAME }}
+          tag: ${{ env.VERSION }}
+          title: ${{ env.VERSION }}
+          body: "Release ${{ env.VERSION }}"
+          draft: true

@@ -13,6 +13,10 @@ var (
 		"AWS_ACCESS_KEY_ID",
 		"AWS_SECRET_ACCESS_KEY",
 		"S3_BASE_ENDPOINT",
+		"S3_BUCKET_NAME",
+		"S3_FOLDER_NAME",
+		"DAYS_TO_KEEP",
+		"LOGS_FOLDER",
 	}
 	Envs = map[string]string{}
 )

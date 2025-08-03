@@ -20,6 +20,7 @@ type BackupConfig struct {
 	ArchiveName    string
 	S3             s3.S3Helper
 	Compressor     compressor.Compressor
+	DaysToKeep     int
 }
 
 func New(config *BackupConfig) Backup {
@@ -29,6 +30,7 @@ func New(config *BackupConfig) Backup {
 		ArchiveName:    config.ArchiveName,
 		S3:             config.S3,
 		Compressor:     config.Compressor,
+		DaysToKeep:     config.DaysToKeep,
 	}
 }
 
@@ -60,7 +62,7 @@ func (b *BackupConfig) CreateNewBackup() error {
 func (b *BackupConfig) DeleteOldBackup() error {
 	// Delete old backups
 	fmt.Println("🧹 Checking for backups older than 90 days to delete...")
-	oldBackups, err := b.S3.ListOldObjects(90)
+	oldBackups, err := b.S3.ListOldObjects(b.DaysToKeep)
 	if err != nil {
 		return fmt.Errorf("❌ Failed to list old backups: %w", err)
 	}
