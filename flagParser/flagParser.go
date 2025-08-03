@@ -21,11 +21,11 @@ func New() FlagParser {
 	fp := &flagParser{}
 	flag.StringVar(&fp.destination, "d", "", "The destination directory to save the backup")
 	flag.StringVar(&fp.source, "s", "", "The source directory to backup")
-	flag.StringVar(&fp.archiveName, "a", "", "The name of the archive to save the backup")
+	flag.StringVar(&fp.archiveName, "a", "valheim-backup", "The name of the archive to save the backup")
 
 	flag.Parse()
 
-	if fp.destination == "" || fp.source == "" || fp.archiveName == "" {
+	if fp.destination == "" || fp.source == "" {
 		log.Fatalf("❌ Missing required flags: -d, -s, -a")
 	}
 
