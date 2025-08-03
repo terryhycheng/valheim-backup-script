@@ -34,4 +34,4 @@ jobs:
           tag: ${{ env.VERSION }}
           title: ${{ env.VERSION }}
           generate_release_notes: true
-          draft: true
+          draft: false
